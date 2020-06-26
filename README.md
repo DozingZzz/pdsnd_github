@@ -8,6 +8,8 @@ Project: Explore US Bikeshare Data
 ### Description
 This project makes use of Python to explore data related to bike share systems for three major U.S. cities.
 
+The script is still WIP and needs further review!
+
 ### Files used
 Include the files used
 bikeshare.py
