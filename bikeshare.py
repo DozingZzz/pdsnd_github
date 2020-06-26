@@ -21,7 +21,7 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     While True:
         try:
-            city = input('Enter a city name: ')
+            city = input('Enter a city name (chicago, new york city, washington): ')
             city = city.lower()
             break
         except:
@@ -72,8 +72,8 @@ def load_data(city, month, day):
     """
     df = pd.read_csv(CITY_DATA.get(city))
     df['Start Time'] = pd.to_datetime(df['Start Time'])
-    df['Month'] = df['Start Time'].dt.month_name().lower()
-    df['DOW']   = df['Start Time'].dt.weekday_name.lower()
+    df['Month'] = df['Start Time'].dt.month_name().str.lower()
+    df['DOW']   = df['Start Time'].dt.day_name().str.lower()
 
     if month != 'all':
         df = df.loc[df['Month'] == month]
@@ -92,13 +92,13 @@ def time_stats(df):
     start_time = time.time()
 
     # TO DO: display the most common month
-    print(df['Month'].mode()[0])
+    print('The most common month is {}.'.format(df['Month'].mode()[0]))
 
     # TO DO: display the most common day of week
-    print(df['DOW'].mode()[0])
+    print('The most common day of week is {}.'.format(df['DOW'].mode()[0]))
 
     # TO DO: display the most common start hour
-    print(df['Start Time'].dt.hour.mode()[0])
+    print('The most common start hour is {}.'.format(df['Start Time'].dt.hour.mode()[0]))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
